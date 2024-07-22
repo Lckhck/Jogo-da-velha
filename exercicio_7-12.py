@@ -2,9 +2,9 @@
 ganhador = False
 
 tabuleiro = [
-    ['X', 'O', 'O'],
-    ['O', 'X', 'X'],
-    ['X', 'O', 'O']
+    ['X', 'O', 'X'],
+    ['O', 'O', 'X'],
+    ['O', 'X', 'O']
 ]
 
 x = 0
@@ -99,6 +99,32 @@ while True:
         colunas += 1
         if y == 3:
             print('Ganhou Y na diagonal principal')
+            break
+
+
+#Parte do algoritmo para verificar a diagonal secundária no jogo
+colunas = 2 #Define a coluna para começar a contar do 2 porque funciona no inverso para essa diagonal
+while True:
+    if linhas > 2 or colunas < 0: #Parque que faz a checagem para encerrar o laço caso não tenha nenhum ganhador nessa diagonal
+        x = 0
+        y = 0
+        break
+    if tabuleiro[linhas][colunas] == 'X':
+        x += 1
+        #Aqui faz uma lógica de incremento nas linhas e decremento nas colunas, para conseguir mapear na diagonal secundária
+        linhas += 1
+        colunas -= 1
+        if x == 3:
+            print('Ganhou X na diagonal secundária')
+            break
+
+    if tabuleiro[linhas][colunas] == 'O':
+        y += 1
+        #Aqui faz uma lógica de incremento nas linhas e decremento nas colunas, para conseguir mapear na diagonal secundária
+        linhas += 1
+        colunas -= 1
+        if y == 3:
+            print('Ganhou Y na diagonal secundária')
             break
 
 
