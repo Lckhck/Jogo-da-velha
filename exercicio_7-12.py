@@ -2,15 +2,13 @@
 ganhador = False
 
 tabuleiro = [
-    ['O', 'X', 'O'],
-    ['O', 'O', 'X'],
-    ['O', 'X', 'O']
+    ['X', 'O', 'O'],
+    ['O', 'X', 'X'],
+    ['X', 'O', 'O']
 ]
 
 x = 0
 y = 0
-vertical_O = 0
-vertical_X = 0
 linhas = 0
 colunas = 0
 #while ganhador == False:
@@ -18,13 +16,9 @@ colunas = 0
 #Algoritmo para percorrer e analisar as colunas do tabuleiro. Identifica se ganhou pela coluna
 
 while True:
-    #Verifica se chegou no final da checagem de colunas e paga o laço de repetição
-    if colunas == 3:
-        linhas = 0
-        colunas = 0
-        break
 
     #Verifica se a posição atual representa o X, se sim incrementa +1 na variável X
+    print(colunas)
     if tabuleiro[linhas][colunas] == 'X':
         x += 1
 
@@ -39,16 +33,22 @@ while True:
             break
         
         #Incrementa +1 na linha para percorrer as linhas, mas mantendo a coluna
+        
         linhas += 1
         print('-'*10)
-
+    
     #Se a linha é 3 reinicia as variáveis linhas, x e y. Incrementa +1 pra coluna
     if linhas == 3:
-            linhas = 0
-            colunas += 1
-            x = 0
-            y = 0
+        linhas = 0
+        colunas += 1
+        x = 0
+        y = 0
+        #Realiza a verificação da coluna, se chegou na coluna 2 zera as colunas e acaba o laço de repetição
+        if colunas == 3:
+            colunas = 0
+            break
 
+    print(colunas)
     #Verifica se a posição atual representa o O, se sim incrementa +1 na variável Y
     if tabuleiro[linhas][colunas] == 'O':
         y += 1
@@ -69,11 +69,38 @@ while True:
 
     #Se a linha é 3 reinicia as variáveis linhas, x e y. Incrementa +1 pra coluna
     if linhas == 3:
-            linhas = 0
-            colunas += 1
-            x = 0
-            y = 0
+        linhas = 0
+        colunas += 1
+        x = 0
+        y = 0
+        if colunas == 3:
+            colunas = 0
+            break
          
+#Parte do algoritmo para verificar a diagonal principal no jogo
+while True:
+    if linhas > 2 or colunas > 2:
+        linhas = 0
+        colunas = 0
+        x = 0
+        y = 0
+        break
+
+    if tabuleiro[linhas][colunas] == 'X':
+        x += 1
+        linhas += 1
+        colunas += 1
+        if x == 3:
+            print('Ganhou X na diagonal principal')
+            break
+    if tabuleiro[linhas][colunas] == 'O':
+        y += 1
+        linhas += 1
+        colunas += 1
+        if y == 3:
+            print('Ganhou Y na diagonal principal')
+            break
+
 
 print('-'*20)
 #Reiniciando variáveis
@@ -84,7 +111,7 @@ colunas = 0
 
 while True:
 
-    #Algoritmo para percorrer a matriz do tabuleiro do jogo da velha.
+    #Algoritmo para percorrer a matriz do tabuleiro do jogo da velha na horizontal, apenas checando as linhas.
     if linhas == 2 and colunas == 3: #Verifica se a matriz chegou no final para parar o programa.
         break
     if colunas == 3: #Verifica se a coluna é igual a 3 para zerar a coluna e incrementar a linha e começar a verificar a próxima linha.
@@ -97,7 +124,7 @@ while True:
     if colunas < 3 and linhas < 3:
         print('colunas: ', colunas, 'Linhas:', linhas, tabuleiro[linhas][colunas])
         
-        #Algoritmo para verificar se o X ou o O ganhou, verifica pela quantidade de pontos
+        #Algoritmo para verificar se o X ou o O ganhou na horizontal, verifica pela quantidade de pontos
         if tabuleiro[linhas][colunas] == 'X':
                 x += 1
                 print(f'X: {x}')
