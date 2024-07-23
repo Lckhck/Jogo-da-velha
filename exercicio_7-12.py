@@ -2,8 +2,8 @@
 ganhador = False
 
 tabuleiro = [
-    ['X', 'O', 'X'],
-    ['O', 'O', 'X'],
+    ['', 'O', 'O'],
+    ['', 'O', 'X'],
     ['O', 'X', 'O']
 ]
 
@@ -15,28 +15,31 @@ colunas = 0
 
 #Algoritmo para percorrer e analisar as colunas do tabuleiro. Identifica se ganhou pela coluna
 
-while True:
-
+while True:      
+    print('Coluna inicial:', colunas)
     #Verifica se a posição atual representa o X, se sim incrementa +1 na variável X
-    print(colunas)
-    if tabuleiro[linhas][colunas] == 'X':
-        x += 1
+    if tabuleiro[linhas][colunas] == 'X' or tabuleiro[linhas][colunas] == '':
 
-        #Esses prints são para testes
-        print(f'linha: {linhas}, coluna: {colunas}')
-        print(f'{tabuleiro[linhas][colunas]}')
-        print(x)
-        
-        #Verifica se x é igual a 3, se sim o X ganha
-        if x == 3:
-            print(f'Ganhou X na coluna {colunas + 1}')
-            break
-        
-        #Incrementa +1 na linha para percorrer as linhas, mas mantendo a coluna
-        
-        linhas += 1
-        print('-'*10)
-    
+        if tabuleiro[linhas][colunas] == '':
+            linhas += 1
+        else:
+            x += 1
+
+            #Esses prints são para testes
+            print(f'linha: {linhas}, coluna: {colunas}')
+            print(f'{tabuleiro[linhas][colunas]}')
+            print(x)
+
+            #Verifica se x é igual a 3, se sim o X ganha
+            if x == 3:
+                print(f'Ganhou X na coluna {colunas + 1}')
+                break
+            
+            #Incrementa +1 na linha para percorrer as linhas, mas mantendo a coluna
+
+            linhas += 1
+            print('-'*10)
+
     #Se a linha é 3 reinicia as variáveis linhas, x e y. Incrementa +1 pra coluna
     if linhas == 3:
         linhas = 0
@@ -48,24 +51,26 @@ while True:
             colunas = 0
             break
 
-    print(colunas)
     #Verifica se a posição atual representa o O, se sim incrementa +1 na variável Y
-    if tabuleiro[linhas][colunas] == 'O':
-        y += 1
+    if tabuleiro[linhas][colunas] == 'O' or tabuleiro[linhas][colunas] == '':
+        if tabuleiro[linhas][colunas] == '':
+            linhas += 1
+        else:
+            y += 1
 
-        #Esses prints são para testes
-        print(f'linha: {linhas}, coluna: {colunas}')
-        print(f'{tabuleiro[linhas][colunas]}')
-        print(y)
+            #Esses prints são para testes
+            print(f'linha: {linhas}, coluna: {colunas}')
+            print(f'{tabuleiro[linhas][colunas]}')
+            print(y)
 
-        #Verifica se y é igual a 3, se sim o O ganha
-        if y == 3:
-            print(f'Ganhou O na coluna {colunas + 1}')
-            break
+            #Verifica se y é igual a 3, se sim o O ganha
+            if y == 3:
+                print(f'Ganhou O na coluna {colunas + 1}')
+                break
 
-        #Incrementa +1 na linha para percorrer as linhas, mas mantendo a coluna
-        linhas += 1
-        print('-'*10)
+            #Incrementa +1 na linha para percorrer as linhas, mas mantendo a coluna
+            linhas += 1
+            print('-'*10)
 
     #Se a linha é 3 reinicia as variáveis linhas, x e y. Incrementa +1 pra coluna
     if linhas == 3:
@@ -79,7 +84,7 @@ while True:
          
 #Parte do algoritmo para verificar a diagonal principal no jogo
 while True:
-    if linhas > 2 or colunas > 2:
+    if (linhas > 2 or colunas > 2) or tabuleiro[linhas][colunas] == '':
         linhas = 0
         colunas = 0
         x = 0
@@ -93,6 +98,14 @@ while True:
         if x == 3:
             print('Ganhou X na diagonal principal')
             break
+
+    if (linhas > 2 or colunas > 2) or tabuleiro[linhas][colunas] == '':
+        linhas = 0
+        colunas = 0
+        x = 0
+        y = 0
+        break
+
     if tabuleiro[linhas][colunas] == 'O':
         y += 1
         linhas += 1
@@ -105,10 +118,11 @@ while True:
 #Parte do algoritmo para verificar a diagonal secundária no jogo
 colunas = 2 #Define a coluna para começar a contar do 2 porque funciona no inverso para essa diagonal
 while True:
-    if linhas > 2 or colunas < 0: #Parque que faz a checagem para encerrar o laço caso não tenha nenhum ganhador nessa diagonal
+    if (linhas > 2 or colunas < 0) or tabuleiro[linhas][colunas] == '': #Parque que faz a checagem para encerrar o laço caso não tenha nenhum ganhador nessa diagonal
         x = 0
         y = 0
         break
+   
     if tabuleiro[linhas][colunas] == 'X':
         x += 1
         #Aqui faz uma lógica de incremento nas linhas e decremento nas colunas, para conseguir mapear na diagonal secundária
@@ -118,6 +132,11 @@ while True:
             print('Ganhou X na diagonal secundária')
             break
 
+    if (linhas > 2 or colunas < 0) or tabuleiro[linhas][colunas] == '': #Parque que faz a checagem para encerrar o laço caso não tenha nenhum ganhador nessa diagonal
+        x = 0
+        y = 0
+        break
+    
     if tabuleiro[linhas][colunas] == 'O':
         y += 1
         #Aqui faz uma lógica de incremento nas linhas e decremento nas colunas, para conseguir mapear na diagonal secundária
@@ -130,8 +149,6 @@ while True:
 
 print('-'*20)
 #Reiniciando variáveis
-x = 0
-y = 0
 linhas = 0
 colunas = 0
 
