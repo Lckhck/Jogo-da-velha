@@ -2,15 +2,10 @@
 ganhador = False
 
 tabuleiro = [
-<<<<<<< HEAD
+
     ['', '', ''],
     ['', '', ''],
     ['', '', '']
-=======
-    ['X', 'O', 'X'],
-    ['O', 'O', 'X'],
-    ['O', 'X', 'O']
->>>>>>> parent of 4678ca2 (Implementação da verificação de espaços em branco, que não foram feitas jogadas no tabuleiro.)
 ]
 
 comecar = int(input("Qual player começará a jogar? 1 ou 2?"))
@@ -27,7 +22,7 @@ colunas = 0
 
 while ganhador == False:
 
-<<<<<<< HEAD
+
     if player1 == 1:
         posicao_escolhida = int(input("(Player 1) Escolha uma posição para jogar de 1 a 9: "))
         if posicao_escolhida < 1 or posicao_escolhida > 9:
@@ -140,7 +135,7 @@ while ganhador == False:
     while True:
         if (linhas > 2 or colunas > 2) or tabuleiro[linhas][colunas] == '':
             linhas = 0
-=======
+
 while True:
 
     #Verifica se a posição atual representa o X, se sim incrementa +1 na variável X
@@ -171,13 +166,11 @@ while True:
         y = 0
         #Realiza a verificação da coluna, se chegou na coluna 2 zera as colunas e acaba o laço de repetição
         if colunas == 3:
->>>>>>> parent of 4678ca2 (Implementação da verificação de espaços em branco, que não foram feitas jogadas no tabuleiro.)
             colunas = 0
             x = 0
             y = 0
             break
 
-<<<<<<< HEAD
         if tabuleiro[linhas][colunas] == 'X':
             x += 1
             linhas += 1
@@ -195,7 +188,7 @@ while True:
             y = 0
             break
 
-=======
+
     print(colunas)
     #Verifica se a posição atual representa o O, se sim incrementa +1 na variável Y
     if tabuleiro[linhas][colunas] == 'O':
@@ -305,7 +298,6 @@ while True:
                 if x == 3: # se x for igual a 3 significa que bateu os 3 pontos da linha e ganhou
                     print('Ganhou X')
                     break
->>>>>>> parent of 4678ca2 (Implementação da verificação de espaços em branco, que não foram feitas jogadas no tabuleiro.)
         if tabuleiro[linhas][colunas] == 'O':
             y += 1
             linhas += 1
